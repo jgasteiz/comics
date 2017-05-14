@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %} | {{ series.title }} comics{% endblock %}
+
+{% block content %}
+    <header class="content-header row">
+        <div class="col">
+            <h1>{{ series.title }}</h1>
+        </div>
+        <div class="col-md-5">
+            <a href="{% url 'dashboard:upload_comics' series.id %}" class="btn btn-primary float-right">Add more comics</a>
+        </div>
+    </header>
+
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>#</th>
+            <th>Comic name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for comic in comics_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <img class="comic-preview" src="{{ comic.get_preview_img }}" alt="{{ series.title }}">
+                    {{ comic.title }}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'dashboard:comic_detail' comic.series.id comic.id %}">Read now</a>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Other
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="{% url 'dashboard:update_comic' comic.series.id comic.id %}">Edit comic title</a>
+                            <a class="dropdown-item" href="{% url 'dashboard:delete_comic' comic.series.id comic.id %}">Delete comic</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

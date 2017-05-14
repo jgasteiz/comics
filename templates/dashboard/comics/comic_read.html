@@ -1,0 +1,17 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %} | {{ comic.title }}{% endblock %}
+
+{% block content %}
+    <header class="content-header">
+        <a href="{% url 'dashboard:comic_list' comic.series.id %}">Back to series</a>
+    </header>
+
+    {% for page in comic.get_pages %}
+    <div>
+        <img src="{{ page }}" alt="comic.title">
+    </div>
+    {% endfor %}
+
+{% endblock %}
+

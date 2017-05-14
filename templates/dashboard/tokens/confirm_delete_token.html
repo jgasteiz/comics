@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+
+{% load forms_tags %}
+
+{% block page_title %} | Deleting {{ api_token.token }}{% endblock %}
+
+{% block content %}
+    <header class="content-header">
+        <h1>Are you sure you want to delete the api_token `{{ api_token.token }}`?</h1>
+    </header>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete it</button>
+        <a href="{% url 'dashboard:token_list' %}" class="btn btn-default">Cancel</a>
+    </form>
+
+{% endblock %}

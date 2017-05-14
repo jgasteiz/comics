@@ -1,0 +1,57 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %} | All series{% endblock %}
+
+{% block content %}
+    <header class="content-header row">
+        <div class="col">
+            <h1>These are your series</h1>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'dashboard:create_series' %}" class="btn btn-primary float-right">Create series</a>
+        </div>
+    </header>
+
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>#</th>
+            <th>Series name</th>
+            <th>Authors</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for series in series_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    <img class="comic-preview" src="{{ series.get_preview_img }}" alt="{{ series.title }}">
+                    {{ series.title }}
+                </td>
+                <td>
+                    {{ series.author }}
+                </td>
+                <td>
+                    {{ series.year }}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'dashboard:comic_list' series.id %}">View comics</a>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Other
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="{% url 'dashboard:upload_comics' series.id %}">Add more comics</a>
+                            <a class="dropdown-item" href="{% url 'dashboard:update_series' series.id %}">Edit series properties</a>
+                            <a class="dropdown-item" href="{% url 'dashboard:delete_series' series.id %}">Delete series</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+
+{% load forms_tags %}
+
+{% block page_title %} | Deleting {{ series.title }}{% endblock %}
+
+{% block content %}
+    <header class="content-header">
+        <h1>Are you sure you want to delete the series `{{ series.title }}` and all it's associated comics?</h1>
+    </header>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes, delete everything</button>
+        <a href="{% url 'dashboard:series_list' %}" class="btn btn-default">Cancel</a>
+    </form>
+
+{% endblock %}

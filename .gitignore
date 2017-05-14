@@ -1,0 +1,9 @@
+.idea/
+__pycache__/
+env/
+db.sqlite3
+.vscode
+secret.py
+.DS_Store
+node_modules/
+static/dist/

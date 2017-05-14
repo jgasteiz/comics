@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html' %}
+
+{% load forms_tags %}
+
+{% block page_title %} | Editing {{ form.instance.title }}{% endblock %}
+
+{% block content %}
+    <header class="content-header">
+        <h1>Update `{{ form.instance.title }}` comic</h1>
+    </header>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group row">
+                <label for="{{ field.id_for_label }}" class="col-2 col-form-label">{{ field.label }}</label>
+                <div class="col-10">
+                    {{ field|addclass:"form-control" }}
+                </div>
+            </div>
+            {% if field.errors %}
+            <ul>
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'dashboard:comic_list' form.instance.series.id %}" class="btn btn-default">Cancel</a>
+    </form>
+
+{% endblock %}

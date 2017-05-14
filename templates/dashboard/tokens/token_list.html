@@ -1,0 +1,46 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %} | All tokens{% endblock %}
+
+{% block content %}
+    <header class="content-header row">
+        <div class="col">
+            <h1>These are your API tokens</h1>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'dashboard:create_token' %}" class="btn btn-primary float-right">Add a new token</a>
+        </div>
+    </header>
+
+    <table class="table">
+        <thead class="thead-inverse">
+        <tr>
+            <th>#</th>
+            <th>Token</th>
+            <th>Description</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for api_token in api_token_list %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                    {{ api_token.token }}
+                </td>
+                <td>
+                    {{ api_token.description }}
+                </td>
+                <td>
+                    {{ api_token.created }}
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'dashboard:delete_token' api_token.id %}">Delete token</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

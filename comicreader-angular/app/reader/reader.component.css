@@ -1,0 +1,44 @@
+.reader {
+    background: black;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.reader__page-wrp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+}
+.reader__page-img {
+    display: inline-block;
+    max-height: 100%;
+}
+.reader__next-page,
+.reader__previous-page {
+    background: white;
+    border: 1px solid #ccc;
+    bottom: 0;
+    font-size: 12px;
+    padding: 4px 12px;
+    position: absolute;
+}
+.reader__next-page {
+    right: 0;
+}
+.reader__previous-page {
+    left: 0;
+}
+.reader__loading {
+    height: 128px;
+    left: 50%;
+    margin-left: -64px;
+    margin-top: -64px;
+    position: absolute;
+    top: 50%;
+    width: 128px;
+}

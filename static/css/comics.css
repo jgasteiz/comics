@@ -1,0 +1,22 @@
+img {
+    display: block;
+    max-width: 100%;
+}
+
+form {
+    margin: 40px 0;
+}
+
+.container,
+.container-fluid {
+    margin-top: 40px;
+}
+
+.content-header {
+    margin-bottom: 40px;
+}
+
+.comic-preview {
+    display: block;
+    max-width: 120px;
+}
