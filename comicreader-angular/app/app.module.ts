@@ -1,11 +1,24 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ReaderComponent } from './reader/reader.component';
 import { ComicListComponent } from './comic-list/comic-list.component'
 import { SeriesListComponent } from './series-list/series-list.component'
+
+const appRoutes: Routes = [
+    {
+        path: 'series/:id',
+        component: ComicListComponent
+    },
+    {
+        path: '',
+        component: SeriesListComponent,
+        data: { title: 'Series List' }
+    }
+];
 
 @NgModule({
     declarations: [
@@ -16,7 +29,8 @@ import { SeriesListComponent } from './series-list/series-list.component'
     ],
     imports: [
         BrowserModule,
-        HttpModule
+        HttpModule,
+        RouterModule.forRoot(appRoutes, { enableTracing: true })
     ],
     providers: [],
     bootstrap: [AppComponent]

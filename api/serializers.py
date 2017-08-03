@@ -45,6 +45,9 @@ class SeriesDetailSerializer(serializers.ModelSerializer):
         serializer = ComicSerializer(queryset, many=True)
         return serializer.data
 
+    def get_preview_img(self, obj):
+        return obj.get_preview_img()
+
 
 class ComicSerializer(serializers.ModelSerializer):
     pages = serializers.SerializerMethodField()

@@ -1,3 +1,31 @@
-<p>
-  comic-list works!
-</p>
+<header class="content-header row">
+    <div class="col">
+        <h1>These are your comics</h1>
+    </div>
+</header>
+
+<p><a class="btn btn-primary" href="/app/">Back</a></p>
+
+<table class="table">
+    <thead class="thead-inverse">
+    <tr>
+        <th>#</th>
+        <th>Series name</th>
+        <th>Authors</th>
+        <th>Year</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="comicList">
+        <tr *ngFor="let comic of comicList">
+            <th scope="row">XXX</th>
+            <td>
+                <img class="comic-preview" src="{{ comic.preview_img }}" alt="{{ comic.title }}">
+                {{ comic.title }}
+            </td>
+            <td>
+                <a class="btn btn-primary">Read comic</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

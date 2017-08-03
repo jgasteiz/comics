@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Comic } from '../models/comic';
+import { Series } from '../models/series';
 import { Observable } from 'rxjs/Rx';
 import { AppSettings } from '../app.component';
 
@@ -11,9 +11,9 @@ import 'rxjs/add/operator/catch';
 export class ComicListService {
     constructor(private http: Http) {}
 
-    getComicList(comicId: number): Observable<Comic> {
+    getSeriesDetail(seriesId: string): Observable<Series> {
         return this.http
-            .get(`/api/comics/${comicId}/?token=${AppSettings.API_TOKEN}`)
+            .get(`/api/series/${seriesId}/?token=${AppSettings.API_TOKEN}`)
             .map(res => res.json());
     }
 }
