@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comic } from '../models/comic';
 import { ReaderService } from './reader.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     providers: [ReaderService],
@@ -9,27 +10,31 @@ import { ReaderService } from './reader.service';
     styleUrls: ['./reader.component.css']
 })
 export class ReaderComponent implements OnInit {
-    @Input('comicId') comicId: number;
-
     private currentPageNum: number;
 
     private comic: Comic;
     private pageLoading: boolean;
 
-    constructor (public readerService: ReaderService) {
+    constructor (
+        private route: ActivatedRoute,
+        private router: Router,
+        private readerService: ReaderService
+    ) {
         this.currentPageNum = 0;
         this.pageLoading = false;
     }
 
     ngOnInit() {
+        const comicId = this.route.snapshot.paramMap.get('id');
         this.readerService
-            .getComic(this.comicId)
+            .getComic(comicId)
             .subscribe(comic => {
                 this.comic = new Comic();
                 this.comic.id = comic.id;
                 this.comic.title = comic.title;
                 this.comic.author = comic.author;
                 this.comic.pages = comic.pages;
+                this.comic.series = comic.series;
             })
     }
 

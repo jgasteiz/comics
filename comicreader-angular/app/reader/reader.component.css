@@ -18,20 +18,26 @@
     display: inline-block;
     max-height: 100%;
 }
+.reader__exit,
 .reader__next-page,
 .reader__previous-page {
     background: white;
     border: 1px solid #ccc;
-    bottom: 0;
     font-size: 12px;
     padding: 4px 12px;
     position: absolute;
 }
 .reader__next-page {
+    bottom: 0;
     right: 0;
 }
 .reader__previous-page {
+    bottom: 0;
     left: 0;
+}
+.reader__exit {
+    left: 0;
+    top: 0;
 }
 .reader__loading {
     height: 128px;

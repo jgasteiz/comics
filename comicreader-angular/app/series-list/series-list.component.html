@@ -15,8 +15,8 @@
     </tr>
     </thead>
     <tbody *ngIf="seriesList">
-        <tr *ngFor="let series of seriesList">
-            <th scope="row">XXX</th>
+        <tr *ngFor="let series of seriesList; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
             <td>
                 <img class="comic-preview" src="{{ series.preview_img }}" alt="{{ series.title }}">
                 {{ series.title }}
@@ -28,7 +28,7 @@
                 {{ series.year }}
             </td>
             <td>
-                <a class="btn btn-primary" href="/app/series/{{ series.id }}/">View comics</a>
+                <a class="btn btn-primary" routerLink="/series/{{ series.id }}/">View comics</a>
             </td>
         </tr>
     </tbody>

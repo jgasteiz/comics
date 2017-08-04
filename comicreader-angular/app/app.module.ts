@@ -10,6 +10,10 @@ import { SeriesListComponent } from './series-list/series-list.component'
 
 const appRoutes: Routes = [
     {
+        path: 'comic/:id',
+        component: ReaderComponent
+    },
+    {
         path: 'series/:id',
         component: ComicListComponent
     },

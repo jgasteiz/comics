@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 export class ReaderService {
     constructor(private http: Http) {}
 
-    getComic(comicId: number): Observable<Comic> {
+    getComic(comicId: string): Observable<Comic> {
         return this.http
             .get(`/api/comics/${comicId}/?token=${AppSettings.API_TOKEN}`)
             .map(res => res.json());

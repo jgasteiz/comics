@@ -4,27 +4,25 @@
     </div>
 </header>
 
-<p><a class="btn btn-primary" href="/app/">Back</a></p>
+<p><a class="btn btn-primary" routerLink="/">Back</a></p>
 
 <table class="table">
     <thead class="thead-inverse">
     <tr>
         <th>#</th>
         <th>Series name</th>
-        <th>Authors</th>
-        <th>Year</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody *ngIf="comicList">
-        <tr *ngFor="let comic of comicList">
-            <th scope="row">XXX</th>
+        <tr *ngFor="let comic of comicList; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
             <td>
                 <img class="comic-preview" src="{{ comic.preview_img }}" alt="{{ comic.title }}">
                 {{ comic.title }}
             </td>
             <td>
-                <a class="btn btn-primary">Read comic</a>
+                <a class="btn btn-primary" routerLink="/comic/{{ comic.id }}">Read comic</a>
             </td>
         </tr>
     </tbody>
