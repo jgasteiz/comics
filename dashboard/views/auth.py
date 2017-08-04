@@ -18,7 +18,7 @@ def user_login(request, **kwargs):
             )
             if user is not None:
                 login(request, user)
-                return redirect(reverse('series_list'))
+                return redirect(reverse('dashboard:series_list'))
             else:
                 login_error = u'Those credentials are not valid'
     else:

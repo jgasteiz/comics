@@ -24,7 +24,7 @@ def create_series(request, **kwargs):
         form = SeriesForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('series_list'))
+            return redirect(reverse('dashboard:series_list'))
     else:
         form = SeriesForm()
 
@@ -45,7 +45,7 @@ def update_series(request, **kwargs):
         form = SeriesForm(request.POST, instance=series)
         if form.is_valid():
             form.save()
-            return redirect(reverse('series_list'))
+            return redirect(reverse('dashboard:series_list'))
     else:
         form = SeriesForm(instance=series)
 
@@ -64,7 +64,7 @@ def delete_series(request, **kwargs):
 
     if request.method == 'POST':
         series.delete()
-        return redirect(reverse('series_list'))
+        return redirect(reverse('dashboard:series_list'))
 
     return render(
         request,

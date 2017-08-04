@@ -52,7 +52,7 @@ def upload_comics(request, **kwargs):
             if file and file.name.endswith('.cbz'):
                 new_comic = upload_comic_to_series(series_id, file)
                 return redirect(reverse(
-                    'comic_detail',
+                    'dashboard:comic_detail',
                     kwargs={
                         'series_id': new_comic.series.id,
                         'comic_id': new_comic.id
@@ -79,7 +79,7 @@ def update_comic(request, **kwargs):
         form = ComicForm(request.POST, instance=comic)
         if form.is_valid():
             form.save()
-            return redirect(reverse('comic_list', kwargs={'series_id': comic.series.id}))
+            return redirect(reverse('dashboard:comic_list', kwargs={'series_id': comic.series.id}))
     else:
         form = ComicForm(instance=comic)
 
@@ -99,7 +99,7 @@ def delete_comic(request, **kwargs):
     if request.method == 'POST':
         series_id = comic.series.id
         comic.delete()
-        return redirect(reverse('comic_list', kwargs={'series_id': series_id}))
+        return redirect(reverse('dashboard:comic_list', kwargs={'series_id': series_id}))
 
     return render(
         request,

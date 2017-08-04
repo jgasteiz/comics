@@ -23,7 +23,7 @@ def create_token(request, **kwargs):
         form = APITokenForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('token_list'))
+            return redirect(reverse('dashboard:token_list'))
     else:
         form = APITokenForm()
 
@@ -42,7 +42,7 @@ def delete_token(request, **kwargs):
 
     if request.method == 'POST':
         api_token.delete()
-        return redirect(reverse('token_list'))
+        return redirect(reverse('dashboard:token_list'))
 
     return render(
         request,
