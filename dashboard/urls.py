@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-from dashboard.views.auth import user_login
 from dashboard.views.comics import (
     comic_detail,
     comic_list,
@@ -22,8 +21,6 @@ from dashboard.views.tokens import (
 
 
 urlpatterns = [
-    url(r'^accounts/login/$', user_login, name='user_login'),
-
     url(r'^$', series_list, name='series_list'),
     url(r'^series/create/$', create_series, name='create_series'),
     url(r'^series/(?P<series_id>\d+)/update/$', update_series, name='update_series'),

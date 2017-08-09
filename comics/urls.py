@@ -19,10 +19,12 @@ from django.contrib import admin
 from api import urls as api_urls
 from comicreader import urls as comicreader_urls
 from dashboard import urls as dashboard_urls
+from dashboard.views.auth import user_login
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls, namespace='api')),
+    url(r'^accounts/login/$', user_login, name='user_login'),
     url(r'^dashboard/', include(dashboard_urls, namespace='dashboard')),
     url(r'^', include(comicreader_urls, namespace='comicreader')),
 ]
