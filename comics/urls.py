@@ -23,6 +23,6 @@ from dashboard import urls as dashboard_urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls, namespace='api')),
-    url(r'^app/', include(comicreader_urls, namespace='comicreader')),
-    url(r'^', include(dashboard_urls, namespace='dashboard')),
+    url(r'^dashboard/', include(dashboard_urls, namespace='dashboard')),
+    url(r'^', include(comicreader_urls, namespace='comicreader')),
 ]
