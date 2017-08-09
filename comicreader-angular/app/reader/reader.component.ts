@@ -6,14 +6,26 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
     providers: [ReaderService],
     selector: 'app-reader',
-    templateUrl: './reader.component.html',
-    styleUrls: ['./reader.component.css']
+    styleUrls: ['reader.component.scss'],
+    template: `
+        <div class="reader" *ngIf="comic">
+            <div class="reader__page-wrp">
+                <button routerLink="/series/{{ comic.series }}" class="reader__exit">Exit</button>
+                <button (click)="previousPage($event)" class="reader__previous-page">Previous page</button>
+                <button (click)="nextPage($event)" class="reader__next-page">Next page</button>
+                <img class="reader__page-img"
+                     [src]="comic.getPage(currentPageNum)"
+                     alt="Page {{ currentPageNum }}">
+                <img *ngIf="pageLoading" class="reader__loading" src="/static/img/loading.gif" alt="">
+            </div>
+        </div>
+    `
 })
 export class ReaderComponent implements OnInit {
-    private currentPageNum: number;
+    currentPageNum: number;
 
-    private comic: Comic;
-    private pageLoading: boolean;
+    comic: Comic;
+    pageLoading: boolean;
 
     constructor (
         private route: ActivatedRoute,

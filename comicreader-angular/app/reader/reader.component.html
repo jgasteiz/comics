@@ -1,9 +1,0 @@
-<div class="reader" *ngIf="comic">
-    <div class="reader__page-wrp">
-        <button routerLink="/series/{{ comic.series }}" class="reader__exit">Exit</button>
-        <button (click)="previousPage($event)" class="reader__previous-page">Previous page</button>
-        <button (click)="nextPage($event)" class="reader__next-page">Next page</button>
-        <img class="reader__page-img" src="{{ comic.getPage(currentPageNum) }}" alt="Page {{ currentPageNum }}">
-        <img *ngIf="pageLoading" class="reader__loading" src="/static/img/loading.gif" alt="">
-    </div>
-</div>

@@ -4,6 +4,7 @@ export class Comic {
     author: string;
     pages: string[];
     series: number;
+    preview_img: string;
 
     getNumPages () {
         return this.pages.length;
