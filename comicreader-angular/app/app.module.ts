@@ -27,14 +27,14 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        ReaderComponent,
         ComicListComponent,
-        SeriesListComponent
+        ReaderComponent,
+        SeriesListComponent,
     ],
     imports: [
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes, { enableTracing: true })
+        RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ],
     providers: [],
     bootstrap: [AppComponent]
