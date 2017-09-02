@@ -3,7 +3,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from dashboard.forms import ComicUploadForm, ComicForm
-from dashboard.models import Series, Comic
+from dashboard.models import (
+    CBR,
+    CBZ,
+    Comic,
+    Series,
+)
 from dashboard.tasks import upload_comic_to_series
 
 
@@ -49,15 +54,22 @@ def upload_comics(request, **kwargs):
             file = form.cleaned_data.get('file')
 
             # Unzip the file and upload everything to s3
-            if file and file.name.endswith('.cbz'):
-                new_comic = upload_comic_to_series(series_id, file)
-                return redirect(reverse(
-                    'dashboard:comic_detail',
-                    kwargs={
-                        'series_id': new_comic.series.id,
-                        'comic_id': new_comic.id
-                    }
-                ))
+            if file:
+                comic_type = None
+                if file.name.endswith('.{}'.format(CBR)):
+                    comic_type = CBR
+                elif file.name.endswith('.{}'.format(CBZ)):
+                    comic_type = CBZ
+
+                if comic_type is not None:
+                    new_comic = upload_comic_to_series(series_id, file, comic_type)
+                    return redirect(reverse(
+                        'dashboard:comic_detail',
+                        kwargs={
+                            'series_id': new_comic.series.id,
+                            'comic_id': new_comic.id
+                        }
+                    ))
     else:
         form = ComicUploadForm()
 

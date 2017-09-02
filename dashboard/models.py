@@ -1,9 +1,10 @@
 from django.db import models
 
-
+CBZ = 'cbz'
+CBR = 'cbr'
 FILE_TYPE_CHOICES = [
-    ('cbz', 'CBZ'),
-    ('cbr', 'CBR'),
+    (CBZ, 'CBZ'),
+    (CBR, 'CBR'),
 ]
 
 
