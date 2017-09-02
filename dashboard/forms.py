@@ -22,7 +22,8 @@ class ComicForm(forms.ModelForm):
 
 
 class ComicUploadForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(required=False)
+    file_url = forms.URLField(required=False)
 
 
 class LoginForm(forms.Form):
