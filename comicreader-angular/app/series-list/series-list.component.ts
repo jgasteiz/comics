@@ -6,11 +6,10 @@ import { Series } from '../models/series';
     providers: [SeriesListService],
     selector: 'app-series-list',
     template: `
-        <header class="content-header row">
-            <div class="col">
-                <h1>These are your series</h1>
-            </div>
-        </header>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Series</li>
+        </ol>
+
         <table class="table">
             <thead class="thead-inverse">
             <tr>
@@ -35,7 +34,7 @@ import { Series } from '../models/series';
                         {{ series.year }}
                     </td>
                     <td>
-                        <a class="btn btn-primary" routerLink="/series/{{ series.id }}/">View comics</a>
+                        <a class="btn btn-primary" routerLink="/series/{{ series.id }}/">View series</a>
                     </td>
                 </tr>
             </tbody>

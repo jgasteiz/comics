@@ -9,19 +9,16 @@ import { ActivatedRoute } from '@angular/router';
     providers: [ComicListService],
     selector: 'app-comic-list',
     template: `
-        <header class="content-header row">
-            <div class="col">
-                <h1>These are your comics</h1>
-            </div>
-        </header>
-
-        <p><a class="btn btn-primary" routerLink="/">Back</a></p>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Series</a></li>
+          <li class="breadcrumb-item active"><span *ngIf="series">{{ series.title }}</span></li>
+        </ol>
 
         <table class="table">
             <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>Series name</th>
+                <th>Comic name</th>
                 <th>Actions</th>
             </tr>
             </thead>
