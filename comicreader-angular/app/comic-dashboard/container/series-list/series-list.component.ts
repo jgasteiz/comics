@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SeriesListService } from './series-list.service';
-import { Series } from '../models/series';
+
+import { Series } from '../../models/series';
+import { ComicDashboardService } from '../../services/comic-dashboard.service';
 
 @Component({
-    providers: [SeriesListService],
+    providers: [ComicDashboardService],
     selector: 'app-series-list',
     template: `
         <ol class="breadcrumb">
@@ -20,7 +21,7 @@ import { Series } from '../models/series';
                 <th>Actions</th>
             </tr>
             </thead>
-            <tbody *ngIf="seriesList">
+            <tbody>
                 <tr *ngFor="let series of seriesList; let i = index">
                     <th scope="row">{{ i + 1 }}</th>
                     <td>
@@ -44,10 +45,12 @@ import { Series } from '../models/series';
 export class SeriesListComponent implements OnInit {
     seriesList: Series[];
 
-    constructor (public seriesListService: SeriesListService) {}
+    constructor (public comicDashboardService: ComicDashboardService) {
+        this.seriesList = [];
+    }
 
     ngOnInit() {
-        this.seriesListService
+        this.comicDashboardService
             .getSeriesList()
             .subscribe(seriesList => {
                 this.seriesList = seriesList;

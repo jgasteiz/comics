@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Comic } from '../models/comic';
-import { Series } from 'app/models/series';
-import { ComicListService } from './comic-list.service';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Comic } from '../../models/comic';
+import { Series } from '../../models/series';
+import { ComicDashboardService } from '../../services/comic-dashboard.service';
 
 @Component({
-    providers: [ComicListService],
+    providers: [ComicDashboardService],
     selector: 'app-comic-list',
     template: `
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/">Series</a></li>
-          <li class="breadcrumb-item active"><span *ngIf="series">{{ series.title }}</span></li>
+          <li class="breadcrumb-item active"><span>{{ series?.title }}</span></li>
         </ol>
 
         <table class="table">
@@ -22,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
                 <th>Actions</th>
             </tr>
             </thead>
-            <tbody *ngIf="comicList">
+            <tbody>
                 <tr *ngFor="let comic of comicList; let i = index">
                     <th scope="row">{{ i + 1 }}</th>
                     <td>
@@ -46,12 +46,14 @@ export class ComicListComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private seriesListService: ComicListService
-    ) {}
+        private comicDashboardService: ComicDashboardService
+    ) {
+        this.comicList = [];
+    }
 
     ngOnInit() {
         const seriesId = this.route.snapshot.paramMap.get('id');
-        this.seriesListService
+        this.comicDashboardService
             .getSeriesDetail(seriesId)
             .subscribe(series => {
                 this.comicList = series.comics;
